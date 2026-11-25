@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rania Ben Hassen – Développeuse web et multimédia</title>
+    <meta
+      name="description"
+      content="Portfolio de Rania Ben Hassen, étudiante en développement web et multimédia à l’ISET Sidi Bouzid, en recherche de stage PFE."
+    />
+    <meta name="theme-color" content="#5b3df5" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Rania Ben Hassen – Développeuse web et multimédia"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio : projets web, compétences et parcours. Recherche un stage PFE."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316123a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='sans-serif' font-weight='800' text-anchor='middle' fill='%23ffb48a'%3ERB%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    data-bs-spy="scroll"
+    data-bs-target="#menu"
+    data-bs-offset="90"
+    tabindex="0"
+  >
+    <div id="boot" aria-hidden="true"><pre id="bootTxt"></pre></div>
+    <script>
+      try {
+        if (
+          sessionStorage.getItem("boot") ||
+          matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+          document.getElementById("boot").remove();
+      } catch (e) {}
+    </script>
+    <noscript
+      ><style>
+        #boot {
+          display: none;
+        }
+      </style></noscript
+    >
+    <div id="spot" aria-hidden="true"></div>
+
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div id="progress" aria-hidden="true"></div>
+
+    <nav class="navbar navbar-expand-md sticky-top nav-glass">
+      <div class="container">
+        <a class="logo" href="#top" aria-label="Accueil">RBH</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="menu">
+          <ul class="navbar-nav align-items-md-center gap-md-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#apropos">À propos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projets">Projets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#parcours">Parcours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#competences">Compétences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <button
+                id="cmdBtn"
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                aria-haspopup="dialog"
+                title="Palette de commandes"
+              >
+                Ctrl K
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                id="theme"
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                aria-label="Changer de thème"
+              >
+                🌙
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="container hero">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 position-relative">
+            <p class="badge-live">Recherche un stage PFE</p>
+            <h1>Rania Ben Hassen</h1>
+            <p class="lead-big">
+              Je conçois des sites et des applications web, avec une touche de
+              multimédia et de 3D interactive.
+            </p>
+            <p class="role">
+              Spécialisation : <span id="role">développement web moderne</span
+              ><span class="caret" aria-hidden="true"></span>
+            </p>
+            <p class="text-secondary">
+              Étudiante en 3ème année de Licence en Technologies de
+              l’Informatique (Multimédia et Développement Web), ISET Sidi
+              Bouzid.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <a class="btn btn-brand btn-lg" href="#projets"
+                >Voir mes projets</a
+              >
+              <a
+                class="btn btn-outline-brand btn-lg"
+                href="CV_Rania_Ben_Hassen.pdf"
+                download
+                >Télécharger mon CV</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <section class="chat" aria-label="Assistant du portfolio">
+              <div class="chat-head">
+                <strong>Posez vos questions</strong
+                ><span>L’assistant répond sur le parcours de Rania</span>
+              </div>
+              <div id="log" class="log" role="log" aria-live="polite"></div>
+              <div id="chips" class="chips"></div>
+              <form id="form" class="ask">
+                <label class="visually-hidden" for="q">Votre question</label>
+                <input
+                  id="q"
+                  class="form-control"
+                  autocomplete="off"
+                  maxlength="300"
+                  placeholder="Ex. : Quelles technologies maîtrise-t-elle ?"
+                />
+                <button class="btn btn-brand" type="submit">Envoyer</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="apropos" class="container sec">
+        <h2>À propos</h2>
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5">
+            <p class="fs-5">
+              Ma spécialisation : le développement web moderne, l’intégration
+              multimédia et la modélisation 3D interactive.
+            </p>
+            <p class="text-secondary">
+              Mes deux stages m’ont appris à respecter une charte graphique en
+              agence, puis à concevoir une application e-commerce complète avec
+              architecture MVC.
+            </p>
+            <ul class="qual">
+              <li>Adaptation</li>
+              <li>Créativité</li>
+              <li>Amélioration continue</li>
+            </ul>
+          </div>
+          <div class="col-lg-7">
+            <div
+              class="editor"
+              role="img"
+              aria-label="Fiche de profil de Rania présentée sous forme de code JavaScript"
+            >
+              <div class="ed-bar">
+                <i></i><i></i><i></i><span>rania.js</span>
+              </div>
+              <pre><code id="code"></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projets" class="container sec">
+        <h2>Projets</h2>
+        <div class="row g-4">
+          <div class="col-12">
+            <article class="card proj proj-big overflow-hidden">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <img
+                    class="shot"
+                    src="rania-jewelry.png"
+                    alt="Page d’accueil du site Rania Jewelry Collection : bijoux dorés et catégories"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="col-lg-6">
+                  <div class="card-body p-4 p-lg-5 d-flex flex-column h-100">
+                    <h3 class="h2">Rania Jewelry Collection</h3>
+                    <p>
+                      Site e-commerce complet de vente de bijoux, réalisé
+                      pendant mon stage chez Yes Internet. Catalogue par
+                      catégories, panier, commande en ligne et espace
+                      administrateur.
+                    </p>
+                    <p class="tags">
+                      PHP · CodeIgniter 4 · MySQL · Bootstrap 5 · MVC
+                    </p>
+                    <button
+                      class="btn btn-brand mt-auto align-self-start"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#jewelry"
+                    >
+                      Voir les détails
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card proj h-100">
+              <div class="cover c2">
+                <img
+                  src="covoiturage.png"
+                  alt="Page d’accueil du site Covoiturage"
+                  loading="lazy"
+                  onerror="this.remove()"
+                />
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h4">Covoiturage</h3>
+                <p>Application web de covoiturage.</p>
+                <a
+                  class="mt-auto fw-medium"
+                  href="https://github.com/raniabn149-rgb/covoiturage"
+                  target="_blank"
+                  rel="noopener"
+                  >Voir le code sur GitHub</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card proj h-100">
+              <div class="cover c3">
+                <img
+                  src="study-group.png"
+                  alt="Page d’accueil du site Study Group"
+                  loading="lazy"
+                  onerror="this.remove()"
+                />
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h4">Study Group Website</h3>
+                <p>Site web dédié aux groupes d’étude.</p>
+                <a
+                  class="mt-auto fw-medium"
+                  href="https://github.com/raniabn149-rgb/studygroupwebsite"
+                  target="_blank"
+                  rel="noopener"
+                  >Voir le code sur GitHub</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card proj h-100">
+              <div class="cover c4">
+                <img
+                  src="mini.png"
+                  alt="Page d’accueil du Mini CMS"
+                  loading="lazy"
+                  onerror="this.remove()"
+                />
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h4">Mini CMS</h3>
+                <p>Mini système de gestion de contenu.</p>
+                <a
+                  class="mt-auto fw-medium"
+                  href="https://github.com/raniabn149-rgb/mini-cms"
+                  target="_blank"
+                  rel="noopener"
+                  >Voir le code sur GitHub</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card proj h-100">
+              <div class="cover c5">
+                <img
+                  src="prod-food.png"
+                  alt="Page d’accueil de l’application ProductFood"
+                  loading="lazy"
+                  onerror="this.remove()"
+                />
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="h4">ProductFood</h3>
+                <p>Application web de gestion de produits alimentaires.</p>
+                <a
+                  class="mt-auto fw-medium"
+                  href="https://github.com/raniabn149-rgb/ProductFood"
+                  target="_blank"
+                  rel="noopener"
+                  >Voir le code sur GitHub</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="parcours" class="container sec">
+        <h2>Parcours</h2>
+        <div class="facts">
+          <span class="f1">2 stages réalisés</span
+          ><span class="f2">Notes 17/20 et 18/20</span
+          ><span class="f3">Mention Bien (1re et 2e années)</span>
+        </div>
+        <ol class="path">
+          <li class="step s1">
+            <div class="dot" aria-hidden="true">🎓</div>
+            <div class="step-card">
+              <div class="head">
+                <span class="when">Depuis 2024</span
+                ><span class="grade">Mention Bien</span>
+              </div>
+              <h3>Licence en Technologies de l’Informatique</h3>
+              <p class="place">
+                Multimédia et Développement Web (MDW) · ISET Sidi Bouzid
+              </p>
+              <ul>
+                <li>1re et 2e années validées avec mention Bien</li>
+                <li>
+                  Spécialisation : développement web moderne, intégration
+                  multimédia et modélisation 3D interactive
+                </li>
+                <li>Actuellement en 3ème année</li>
+              </ul>
+            </div>
+          </li>
+          <li class="step s2">
+            <div class="dot" aria-hidden="true">🖼️</div>
+            <div class="step-card">
+              <div class="head">
+                <span class="when">6 janvier – 1er février 2025</span
+                ><span class="grade">17/20</span>
+              </div>
+              <h3>Stage d’initiation</h3>
+              <p class="place">Iconconcept, agence web · Hammamet</p>
+              <ul>
+                <li>
+                  Email promotionnel pour ExpressMailing.tn avec BeeFree :
+                  template adapté à la charte graphique, tableaux de tarifs en
+                  HTML
+                </li>
+                <li>
+                  Mise à jour de 15 hôtels sur Eventstour.net : descriptions,
+                  tarifs des chambres et suppléments
+                </li>
+                <li>
+                  Recherche, conversion en SVG et organisation d’icônes pour
+                  iconconcept.com (Flaticon, Convertio, IcoMoon)
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="step s3">
+            <div class="dot" aria-hidden="true">💻</div>
+            <div class="step-card">
+              <div class="head">
+                <span class="when">5 – 31 janvier 2026</span
+                ><span class="grade">18/20</span>
+              </div>
+              <h3>Stage de perfectionnement</h3>
+              <p class="place">Yes Internet · Hammamet</p>
+              <ul>
+                <li>
+                  Conception et développement complet d’un site e-commerce de
+                  bijoux : Rania Jewelry Collection
+                </li>
+                <li>
+                  Architecture MVC, base de données et espace administrateur
+                  (produits, catégories, commandes, messages)
+                </li>
+              </ul>
+              <p class="tags mb-0 mt-3">
+                PHP · CodeIgniter 4 · MySQL · Bootstrap 5
+              </p>
+            </div>
+          </li>
+          <li class="step s4">
+            <div class="dot" aria-hidden="true">🚀</div>
+            <div class="step-card">
+              <div class="head"><span class="when">Maintenant</span></div>
+              <h3>À la recherche d’un stage PFE</h3>
+              <p class="place">Développement web et multimédia</p>
+              <ul>
+                <li>
+                  Mettre mes compétences en pratique sur un projet concret
+                </li>
+                <li>Contribuer au sein d’une équipe</li>
+              </ul>
+              <a class="btn btn-brand mt-3" href="#contact">Me contacter</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="competences" class="container sec">
+        <h2>Compétences</h2>
+        <div
+          class="d-flex flex-wrap gap-2 mb-4"
+          role="group"
+          aria-label="Filtrer les compétences"
+        >
+          <button class="btn btn-sm btn-outline-brand active" data-filter="all">
+            Tout
+          </button>
+          <button class="btn btn-sm btn-outline-brand" data-filter="lang">
+            Langages
+          </button>
+          <button class="btn btn-sm btn-outline-brand" data-filter="web">
+            Frameworks
+          </button>
+          <button class="btn btn-sm btn-outline-brand" data-filter="data">
+            Bases de données
+          </button>
+          <button class="btn btn-sm btn-outline-brand" data-filter="media">
+            3D et design
+          </button>
+          <button class="btn btn-sm btn-outline-brand" data-filter="tools">
+            Outils
+          </button>
+        </div>
+        <p class="text-secondary small mb-3">
+          Clique sur une compétence pour en savoir plus.
+        </p>
+        <div class="row g-3">
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-php-plain colored" aria-hidden="true"></i
+              ><span>PHP</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-javascript-plain colored" aria-hidden="true"></i
+              ><span>JavaScript</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-c-plain colored" aria-hidden="true"></i
+              ><span>C</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-cplusplus-plain colored" aria-hidden="true"></i
+              ><span>C++</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-java-plain colored" aria-hidden="true"></i
+              ><span>Java</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-python-plain colored" aria-hidden="true"></i
+              ><span>Python</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-html5-plain colored" aria-hidden="true"></i
+              ><span>HTML5</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="lang"
+            >
+              <i class="devicon-css3-plain colored" aria-hidden="true"></i
+              ><span>CSS3</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="web"
+            >
+              <i class="devicon-laravel-plain colored" aria-hidden="true"></i
+              ><span>Laravel</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="web"
+            >
+              <i class="devicon-angularjs-plain colored" aria-hidden="true"></i
+              ><span>Angular</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="web"
+            >
+              <i
+                class="devicon-codeigniter-plain colored"
+                aria-hidden="true"
+              ></i
+              ><span>CodeIgniter 4</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="web"
+            >
+              <i class="devicon-bootstrap-plain colored" aria-hidden="true"></i
+              ><span>Bootstrap 5</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="data"
+            >
+              <i class="devicon-mysql-plain colored" aria-hidden="true"></i
+              ><span>MySQL</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="data"
+            >
+              <i class="devicon-phpmyadmin-plain colored" aria-hidden="true"></i
+              ><span>phpMyAdmin</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="media"
+            >
+              <i class="devicon-unity-original colored" aria-hidden="true"></i
+              ><span>Unity</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="media"
+            >
+              <i class="devicon-blender-original colored" aria-hidden="true"></i
+              ><span>Blender</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="media"
+            >
+              <i class="devicon-photoshop-plain colored" aria-hidden="true"></i
+              ><span>Photoshop</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="tools"
+            >
+              <i class="devicon-vscode-plain colored" aria-hidden="true"></i
+              ><span>VS Code</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="tools"
+            >
+              <i class="devicon-git-plain colored" aria-hidden="true"></i
+              ><span>Git</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="tools"
+            >
+              <i class="devicon-github-original colored" aria-hidden="true"></i
+              ><span>GitHub</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="tools"
+            >
+              <i class="devicon-linux-plain colored" aria-hidden="true"></i
+              ><span>Linux</span>
+            </button>
+          </div>
+          <div class="col-4 col-md-3 col-lg-2">
+            <button
+              type="button"
+              class="skill"
+              data-bs-toggle="modal"
+              data-bs-target="#skillModal"
+              data-cat="tools"
+            >
+              <i class="devicon-qt-original colored" aria-hidden="true"></i
+              ><span>Qt</span>
+            </button>
+          </div>
+        </div>
+        <p class="text-secondary mt-4">
+          Adaptation, créativité, amélioration continue. Certifications en
+          leadership. Langues : arabe (maternelle), français et anglais (très
+          bien).
+        </p>
+      </section>
+
+      <section id="contact" class="container sec text-center">
+        <h2>Travaillons ensemble</h2>
+        <p class="text-secondary mx-auto" style="max-width: 44ch">
+          Je cherche un stage de fin d’études en développement web et
+          multimédia.
+        </p>
+        <p class="links">
+          <a href="mailto:raniabn149@gmail.com">raniabn149@gmail.com</a>
+          <a href="tel:+21690615818">+216 90 615 818</a>
+          <a
+            href="https://www.linkedin.com/in/rania-ben-hassen"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+          <a
+            href="https://github.com/raniabn149-rgb"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+        </p>
+        <form
+          id="contactForm"
+          class="contact-form mx-auto text-start needs-validation"
+          novalidate
+        >
+          <h3 class="h3 mb-1">Écrivez-moi</h3>
+          <p class="text-secondary mb-4">
+            Un projet, une proposition de stage ? Je réponds dès que possible.
+          </p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="cName">Votre nom</label>
+              <input
+                class="form-control"
+                id="cName"
+                name="name"
+                required
+                maxlength="80"
+                autocomplete="name"
+              />
+              <div class="invalid-feedback">Indiquez votre nom.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="cEmail">Votre email</label>
+              <input
+                class="form-control"
+                id="cEmail"
+                name="email"
+                type="email"
+                required
+                maxlength="120"
+                autocomplete="email"
+              />
+              <div class="invalid-feedback">Indiquez un email valide.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="cSubject">Objet</label>
+              <select class="form-select" id="cSubject" name="subject" required>
+                <option>Proposition de stage PFE</option>
+                <option>Projet ou collaboration</option>
+                <option>Autre question</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="cMsg">Message</label>
+              <textarea
+                class="form-control"
+                id="cMsg"
+                name="message"
+                rows="5"
+                required
+                minlength="10"
+                maxlength="2000"
+              ></textarea>
+              <div class="invalid-feedback">
+                Écrivez un message d’au moins 10 caractères.
+              </div>
+            </div>
+            <input
+              type="text"
+              name="website"
+              class="d-none"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+            <div class="col-12">
+              <button
+                id="cSend"
+                class="btn btn-brand btn-lg w-100"
+                type="submit"
+              >
+                Envoyer le message
+              </button>
+            </div>
+          </div>
+          <div id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="container foot">
+      © 2026 Rania Ben Hassen · Hammamet, Tunisie
+    </footer>
+
+    <div
+      class="modal fade"
+      id="jewelry"
+      tabindex="-1"
+      aria-labelledby="jt"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title h4" id="jt">Rania Jewelry Collection</h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fermer"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              class="img-fluid rounded mb-3"
+              src="rania-jewelry.png"
+              alt="Aperçu du site Rania Jewelry Collection"
+            />
+            <h4 class="h6">Côté client</h4>
+            <ul>
+              <li>
+                Catalogue par catégories : colliers, boucles d’oreilles,
+                bracelets, bagues
+              </li>
+              <li>Panier avec sessions et commande en ligne</li>
+              <li>Interface responsive</li>
+            </ul>
+            <h4 class="h6">Côté administrateur</h4>
+            <ul>
+              <li>Gestion des produits et des catégories</li>
+              <li>Suivi des commandes et des messages</li>
+            </ul>
+            <h4 class="h6">Technologies</h4>
+            <p class="mb-0">
+              PHP, CodeIgniter 4, MySQL, phpMyAdmin, Bootstrap 5, HTML/CSS, WAMP
+              Server, architecture MVC.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="skillModal"
+      tabindex="-1"
+      aria-labelledby="skTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex align-items-center gap-3">
+              <i id="skIcon" class="sk-big" aria-hidden="true"></i>
+              <div>
+                <h3 class="modal-title h4 mb-0" id="skTitle"></h3>
+                <span id="skCat" class="badge-live m-0 mt-1"></span>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fermer"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="skDesc"></p>
+            <div id="skUse"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="cmd" class="cmd" hidden>
+      <div
+        class="cmd-box"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Palette de commandes"
+      >
+        <input
+          id="cmdIn"
+          type="text"
+          autocomplete="off"
+          placeholder="Tapez une commande : projets, cv, thème…"
+          aria-label="Rechercher une commande"
+        />
+        <ul id="cmdList" role="listbox"></ul>
+        <p class="cmd-hint">
+          ↑ ↓ pour choisir · Entrée pour lancer · Échap pour fermer
+        </p>
+      </div>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <a id="topBtn" class="btn btn-brand" href="#top" aria-label="Retour en haut"
+      >↑</a
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
